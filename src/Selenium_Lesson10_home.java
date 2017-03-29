@@ -23,28 +23,28 @@ public class Selenium_Lesson10_home
 		System.out.println("Open yoni locator page");
 		
 		WebElement L1 = driver.findElement(By.id("locator_id"));
-		System.out.println("Locator 1: " + L1);
+		System.out.println("Locator 1: " + L1.getText());
 		
 		WebElement L2 = driver.findElement(By.name("locator_name"));
-		System.out.println("Locator 2: " + L2);
+		System.out.println("Locator 2: " + L2.getText());
 		
 		WebElement L3 = driver.findElement(By.tagName("p"));
-		System.out.println("Locator 3: " + L3);
+		System.out.println("Locator 3: " + L3.getText());
 		
 		WebElement L4 = driver.findElement(By.className("locator_class"));
-		System.out.println("Locator 4: " + L4);
+		System.out.println("Locator 4: " + L4.getText());
 		
 		WebElement L5 = driver.findElement(By.linkText("myLocator(5)"));
-		System.out.println("Locator 5: " + L5);
+		System.out.println("Locator 5: " + L5.getText());
 		
 		WebElement L6 = driver.findElement(By.partialLinkText("(6)"));
-		System.out.println("Locator 6: " + L6);
+		System.out.println("Locator 6: " + L6.getText());
 		
 		WebElement L7 = driver.findElement(By.xpath("//input[@myname='selenium']"));
-		System.out.println("Locator 7: " + L7);
+		System.out.println("Locator 7: " + L7.getText());
 		
 		WebElement L8 = driver.findElement(By.cssSelector("button[class='btn btn-2']"));
-		System.out.println("Locator 8: " + L8);
+		System.out.println("Locator 8: " + L8.getText());
 	}
  
 }
