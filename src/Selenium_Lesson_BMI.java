@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import javax.swing.JOptionPane;
+
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Selenium_Lesson_BMI
 {
-public static WebDriver driver;
+	public static WebDriver driver;
 	
 	@BeforeClass
 	public static void BC()
@@ -32,6 +35,7 @@ public static WebDriver driver;
 		String BMI = driver.findElement(By.id("bmi_result")).getAttribute("value");
 		assertEquals("The found BMI is not as expected!","25",BMI);
 	}
+	
 	
 	@Test
 	public void ButtonSizeLocationTest()
@@ -66,5 +70,28 @@ public static WebDriver driver;
 		
 		assertEquals("Button tag value is not input.","input",ButtonTag);
 		assertEquals("Button text is not as expected 'Calculate BMI'.","Calculate BMI",ButtonTxt);
+	}
+	
+	@Test
+	public void ValidationTest()
+	{
+		Boolean ValidationTxt = false;
+		try
+		{
+			ValidationTxt = driver.findElement(By.id("validation")).isDisplayed();
+			assertTrue("Validarion text not found", ValidationTxt);
+		}
+		
+		catch (Exception e) 
+		{
+			JOptionPane.showMessageDialog(null, "Validation text not seen");
+		}
+		
+	}
+	
+	@AfterClass
+	public static void close()
+	{
+		driver.close();
 	}
 }
