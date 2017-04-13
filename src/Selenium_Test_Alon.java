@@ -22,7 +22,7 @@ public class Selenium_Test_Alon
 		System.setProperty("webdriver.chrome.driver", winWebDriverPath);
 		driver = new ChromeDriver();
 		System.out.println("Open CH browser.");
-		
+		 
 		driver.get("http://1776740_alonl:al0545757044@blog.yoniflenner.net/members/pizza/");
 		System.out.println("Navigate to pizza page.");
 	}
