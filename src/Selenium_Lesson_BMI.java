@@ -1,6 +1,12 @@
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -8,10 +14,22 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 
 public class Selenium_Lesson_BMI
 {
+	public static String getData(String nodeName) throws ParserConfigurationException, SAXException, IOException
+	{
+	File fXmlFile = new File("/home/alonlocker/workspace/SEleniumCourse1/src/Enviroment.xml");
+	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	Document doc = dBuilder.parse(fXmlFile); 
+	doc.getDocumentElement().normalize();
+	return doc.getElementsByTagName(nodeName).item(0).getTextContent();
+	}
+	
 	public static WebDriver driver;
 	
 	@BeforeClass
@@ -22,14 +40,13 @@ public class Selenium_Lesson_BMI
 	}
 	
 	@Test
-	public void BMICalculateTest()
+	public void BMICalculateTest() throws ParserConfigurationException, SAXException, IOException
 	{
-		driver.get("http://blog.yoniflenner.net/bmi/");
+		driver.get(getData("Url"));
 		System.out.println("Open BMI page");
 		
-		driver.findElement(By.id("weight")).sendKeys("80");
-		driver.findElement(By.id("hight")).sendKeys("180");
-		
+		driver.findElement(By.id("weight")).sendKeys(getData("PersonWeight"));
+		driver.findElement(By.id("hight")).sendKeys(getData("PersonHight"));
 		driver.findElement(By.id("calculate_data")).click();
 		
 		String BMI = driver.findElement(By.id("bmi_result")).getAttribute("value");
@@ -38,9 +55,10 @@ public class Selenium_Lesson_BMI
 	
 	
 	@Test
-	public void ButtonSizeLocationTest()
+	public void ButtonSizeLocationTest() throws ParserConfigurationException, SAXException, IOException
 	{
-		
+		try
+		{
 		int buttonWidth = driver.findElement(By.id("calculate_data")).getSize().getWidth();
 		int buttonHight = driver.findElement(By.id("calculate_data")).getSize().getHeight();
 		int buttonLocationX = driver.findElement(By.id("calculate_data")).getLocation().getX();
@@ -48,8 +66,12 @@ public class Selenium_Lesson_BMI
 		
 		System.out.println("Button size: " + buttonWidth + "X" + buttonHight);
 		System.out.println("Button location: " + buttonLocationX + "X" + buttonLocationY);
-		assertEquals("The button width size is not much!",133,buttonWidth);
+		assertEquals("The button width size is not much!",getData("buttonWidth"),buttonWidth);
 		assertEquals("The button hight size is not much!",35,buttonHight);
+		}
+		catch (AssertionError ae) {
+			System.out.println("Assertion button size fail: " + ae);
+		}
 	}
 	
 	@Test

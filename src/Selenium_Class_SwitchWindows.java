@@ -67,10 +67,9 @@ public class Selenium_Class_SwitchWindows
 	
 		WebElement iframe1 = driver.findElement(By.cssSelector("iframe[src='ex09_newFrame.html']"));
 		System.out.println("check1");
-		driver.switchTo().frame(iframe1.findElement(By.id("iframe_container")));
+		driver.switchTo().frame(iframe1);
 		System.out.println("check2");
-		//Thread.sleep(1000);
-		//iframe1.findElement(By.id("iframe_container"));
+		iframe1.findElement(By.id("iframe_container"));
 		System.out.println("check3");
 	}
 	
