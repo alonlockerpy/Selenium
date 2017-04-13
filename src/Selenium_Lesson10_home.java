@@ -12,7 +12,10 @@ public class Selenium_Lesson10_home
 	@BeforeClass
 	public static void BC()
 	{
-		System.setProperty("webdriver.chrome.driver", "/home/alonlocker/Drivers/chromedriver");
+		//chromedriver, geckodriver, IEDriverServer
+		String browserDriver = "chromedriver.exe";
+		String winWebDriverPath = "C:\\selenium\\chromedriver_win32\\" + browserDriver;
+		System.setProperty("webdriver.chrome.driver", winWebDriverPath);
 		driver = new ChromeDriver();
 	}
 	
