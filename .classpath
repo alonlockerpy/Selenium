@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="C:/selenium/selenium-java-3.3.1/lib/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/selenium/selenium-java-3.3.1/lib/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="var" path="JRE_LIB"/>
+	<classpathentry kind="lib" path="C:/Users/Alon/Downloads/sikulixapi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
